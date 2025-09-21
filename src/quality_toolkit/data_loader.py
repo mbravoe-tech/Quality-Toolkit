@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import csv
 from pathlib import Path
@@ -7,12 +7,16 @@ from typing import Dict, Optional
 import pandas as pd
 
 
+SUPPORTED_EXCEL_SUFFIXES = {".xls", ".xlsx", ".xlsm"}
+
+
 def load_dataset(
     path: str | Path,
     *,
     dtype: Optional[Dict[str, str]] = None,
     encoding: str = "utf-8",
     delimiter: Optional[str] = None,
+    sheet_name: str | int | None = None,
 ) -> pd.DataFrame:
     """Load a tabular file into a :class:`pandas.DataFrame`."""
 
@@ -24,8 +28,11 @@ def load_dataset(
     if suffix in {".csv", ".txt", ".tsv"}:
         resolved_delimiter = delimiter or _detect_delimiter(target)
         return pd.read_csv(target, dtype=dtype, encoding=encoding, delimiter=resolved_delimiter)
-    if suffix in {".parquet"}:
+    if suffix == ".parquet":
         return pd.read_parquet(target)
+    if suffix in SUPPORTED_EXCEL_SUFFIXES:
+        sheet = 0 if sheet_name is None else sheet_name
+        return pd.read_excel(target, dtype=dtype, sheet_name=sheet)
 
     raise ValueError(f"Unsupported file type: {suffix}")
 

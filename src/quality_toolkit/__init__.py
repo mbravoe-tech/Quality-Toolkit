@@ -1,7 +1,8 @@
-﻿"""Quality Toolkit package providing reusable data quality helpers."""
+"""Quality Toolkit package providing reusable data quality helpers."""
 
 from .analysis import ColumnQuality, DatasetQuality, evaluate_data_quality
 from .data_loader import load_dataset
+from .gui import QualityToolkitApp, launch_gui
 from .report import build_markdown_report
 
 __all__ = [
@@ -10,6 +11,8 @@ __all__ = [
     "evaluate_data_quality",
     "load_dataset",
     "build_markdown_report",
+    "QualityToolkitApp",
+    "launch_gui",
 ]
 
 __version__ = "0.1.0"

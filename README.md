@@ -3,6 +3,7 @@
 A Python toolkit for inspecting the quality of tabular datasets.
 
 ## Features
+- Desktop GUI for exploring datasets and generating visual quality reports.
 - Command-line interface for generating markdown quality reports.
 - Library API surfaces per-column metrics, missing-value ratios, and duplicate counts.
 - Extensible structure ready for additional quality checks and integrations.
@@ -19,6 +20,13 @@ A Python toolkit for inspecting the quality of tabular datasets.
    ```bash
    quality-toolkit path\to\data.csv
    ```
+
+## Interactive App
+Launch the desktop window with:
+```bash
+quality-toolkit-gui
+```
+Use the *Open Dataset?* button to pick a CSV, Excel (`.xls`, `.xlsx`, `.xlsm`), or Parquet file. Select any subset of columns and click **Generate Report** to inspect metrics, column-level details, and the rendered markdown report.
 
 ## Library Example
 ```python
